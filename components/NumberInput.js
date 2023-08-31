@@ -29,9 +29,12 @@ export default function NumberInput({ onNumberInput }) {
         value={enteredNumber}
       />
       <View style={styles.inputActions}>
-        <Text>Hello</Text>
-        <PrimaryButton onAction={resetHandler}>Reset</PrimaryButton>
-        <PrimaryButton onAction={inputHandler}>Confirm</PrimaryButton>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton onAction={resetHandler}>Reset</PrimaryButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton onAction={inputHandler}>Confirm</PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
     padding: 25,
     gap: 15,
     alignItems: 'center',
-    backgroundColor: '#72063c',
+    backgroundColor: '#4e0329',
     height: 220,
     width: '80%',
     borderRadius: 8,
@@ -70,5 +73,8 @@ const styles = StyleSheet.create({
   inputActions: {
     flexDirection: 'row',
     gap: 25,
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });
