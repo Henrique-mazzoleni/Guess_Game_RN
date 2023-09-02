@@ -1,6 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
 import Title from '../components/Title';
+import PrimaryButton from '../components/PrimaryButton';
 
 export default function EndScreen({ rounds, number, onRestart }) {
   return (
@@ -10,11 +11,9 @@ export default function EndScreen({ rounds, number, onRestart }) {
         Your phone needed {rounds} round{rounds > 1 ? 's' : ''} to guess the
         number {number}
       </Text>
-      <Pressable onPress={onRestart}>
-        <View style={styles.endButton}>
-          <Text style={styles.endButtonText}>Start New Game</Text>
-        </View>
-      </Pressable>
+      <View style={styles.buttonContainer}>
+        <PrimaryButton onAction={onRestart}>Start New Game</PrimaryButton>
+      </View>
     </View>
   );
 }
@@ -37,5 +36,8 @@ const styles = StyleSheet.create({
   },
   endButtonText: {
     color: '#B5A8B5',
+  },
+  buttonContainer: {
+    alignSelf: 'stretch',
   },
 });

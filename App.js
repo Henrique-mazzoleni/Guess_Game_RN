@@ -8,6 +8,8 @@ import InputScreen from './screens/InputScreen';
 import GuessScreen from './screens/GuessScreen';
 import EndScreen from './screens/EndScreen';
 
+import { Colors } from './constants/colors';
+
 export default function App() {
   const [chosenNumber, setChosenNumber] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -29,10 +31,14 @@ export default function App() {
   };
 
   return (
-    <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.appContainer}>
+    <LinearGradient
+      colors={[Colors.primary700, Colors.accent500]}
+      style={styles.appContainer}
+    >
       <ImageBackground
         source={require('./assets/background.png')}
         resizeMode="cover"
+        style={styles.appContainer}
         imageStyle={styles.backgroundImage}
       >
         <SafeAreaView style={styles.contentContainer}>

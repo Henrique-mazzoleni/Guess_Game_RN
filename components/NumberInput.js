@@ -1,7 +1,10 @@
 import { useState } from 'react';
 
 import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
+
 import PrimaryButton from './PrimaryButton';
+
+import { Colors } from '../constants/colors';
 
 export default function NumberInput({ onNumberInput }) {
   const [enteredNumber, setEnteredNumber] = useState('');
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
     padding: 25,
     gap: 15,
     alignItems: 'center',
-    backgroundColor: '#3b021f',
+    backgroundColor: Colors.primary800,
     height: 220,
     width: '80%',
     borderRadius: 8,
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
   },
   inputTitle: {
-    color: '#227b04',
+    color: Colors.accent500,
     fontSize: 22,
   },
   inputField: {
@@ -71,8 +74,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     width: 50,
-    color: '#ddb52f',
-    borderBottomColor: '#ddb52f',
+    color: Colors.accent500,
+    borderBottomColor: Colors.accent500,
     borderBottomWidth: 2,
   },
   inputActions: {

@@ -32,7 +32,7 @@ export default function GuessScreen({ onVerify, number, guessList }) {
       ]);
       return;
     }
-    setBounds({ ...bounds, min: guess + 1 });
+    setBounds({ ...bounds, min: guess });
   };
 
   useEffect(() => {

@@ -1,5 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 import PrimaryButton from './PrimaryButton';
+
+import { Colors } from '../constants/colors';
 
 export default function GuessBoundary({ onGreater, onLower }) {
   return (
@@ -7,10 +11,14 @@ export default function GuessBoundary({ onGreater, onLower }) {
       <Text style={styles.guessText}>Higher or lower?</Text>
       <View style={styles.guessActions}>
         <View style={styles.buttonContainer}>
-          <PrimaryButton onAction={onLower}>-</PrimaryButton>
+          <PrimaryButton onAction={onLower}>
+            <Ionicons name="md-remove" size={24} />
+          </PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton onAction={onGreater}>+</PrimaryButton>
+          <PrimaryButton onAction={onGreater}>
+            <Ionicons name="md-add" size={24} />
+          </PrimaryButton>
         </View>
       </View>
     </View>
@@ -22,13 +30,13 @@ const styles = StyleSheet.create({
     padding: 25,
     gap: 15,
     alignItems: 'center',
-    backgroundColor: '#3b021f',
+    backgroundColor: Colors.primary800,
     height: 150,
     width: '80%',
     borderRadius: 10,
   },
   guessText: {
-    color: '#227b04',
+    color: Colors.accent500,
     fontSize: 22,
   },
   guessActions: {
