@@ -1,25 +1,38 @@
 import { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
 
 import GuessBoundary from '../components/GuessBoundary';
+import Title from '../components/Title';
 
-export default function GuessScreen({ onVerify, guessList }) {
-  const [guess, setGuess] = useState('');
+export default function GuessScreen({ onVerify, number, guessList }) {
+  const [guess, setGuess] = useState(null);
   const [bounds, setBounds] = useState({ min: 0, max: 100 });
 
   const generateGuess = () => {
     const newGuess =
       Math.ceil(Math.random() * (bounds.max - bounds.min)) + bounds.min;
-    onVerify(String(newGuess));
     setGuess(newGuess);
+    onVerify(String(newGuess));
   };
 
   const upperBoundHandler = () => {
+    if (Number(number) > guess) {
+      Alert.alert('Invalid input', 'Please be honest!', [
+        { text: 'Retry', style: 'default' },
+      ]);
+      return;
+    }
     setBounds({ ...bounds, max: guess - 1 });
   };
 
   const lowerBoundHandler = () => {
-    setBounds({ ...bounds, min: guess });
+    if (Number(number) < guess) {
+      Alert.alert('Invalid input', 'Please be honest!', [
+        { text: 'Retry', style: 'default' },
+      ]);
+      return;
+    }
+    setBounds({ ...bounds, min: guess + 1 });
   };
 
   useEffect(() => {
@@ -28,15 +41,15 @@ export default function GuessScreen({ onVerify, guessList }) {
 
   return (
     <>
-      <Text style={styles.appTitle}>Opponent's Guess</Text>
+      <Title>Opponent's Guess</Title>
       <View style={styles.guessContainer}>
         <Text style={styles.guessText}>{guess}</Text>
       </View>
       <GuessBoundary
-        onGreated={lowerBoundHandler}
+        onGreater={lowerBoundHandler}
         onLower={upperBoundHandler}
       />
-      <FlatList
+      {/* <FlatList
         data={guessList}
         inverted={true}
         renderItem={(guess, idx) => {
@@ -47,22 +60,13 @@ export default function GuessScreen({ onVerify, guessList }) {
             </View>
           );
         }}
-        keyExtractor={(guess) => guess}
-      />
+        keyExtractor={(_, i) => i}
+      /> */}
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  appTitle: {
-    fontSize: 25,
-    fontWeight: '700',
-    padding: 12,
-    paddingHorizontal: 50,
-    color: '#fff',
-    borderWidth: 3,
-    borderColor: '#fff',
-  },
   guessContainer: {
     width: '70%',
     height: 150,

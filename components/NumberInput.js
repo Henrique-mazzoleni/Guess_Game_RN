@@ -1,18 +1,23 @@
 import { useState } from 'react';
 
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
 import PrimaryButton from './PrimaryButton';
 
 export default function NumberInput({ onNumberInput }) {
   const [enteredNumber, setEnteredNumber] = useState('');
 
   const inputHandler = () => {
+    const inputNumber = parseInt(enteredNumber);
+    if (isNaN(inputNumber) || inputNumber <= 0 || inputNumber > 100) {
+      Alert.alert('Invalid number', 'Number has to be between 1 and 99', [
+        { text: 'Okay', style: 'destructive', onPress: resetHandler },
+      ]);
+      return;
+    }
     onNumberInput(enteredNumber);
-    setEnteredNumber('');
   };
 
   const resetHandler = () => {
-    onNumberInput('');
     setEnteredNumber('');
   };
 
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
     padding: 25,
     gap: 15,
     alignItems: 'center',
-    backgroundColor: '#4e0329',
+    backgroundColor: '#3b021f',
     height: 220,
     width: '80%',
     borderRadius: 8,

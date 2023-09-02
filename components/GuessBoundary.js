@@ -1,20 +1,17 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import PrimaryButton from './PrimaryButton';
 
-export default function GuessBoundary({ onGreated, onLower }) {
+export default function GuessBoundary({ onGreater, onLower }) {
   return (
     <View style={styles.boundryContainer}>
       <Text style={styles.guessText}>Higher or lower?</Text>
       <View style={styles.guessActions}>
-        <Pressable onPress={onLower}>
-          <View style={styles.guessButton}>
-            <Text style={styles.guessButtonText}>-</Text>
-          </View>
-        </Pressable>
-        <Pressable onPress={onGreated}>
-          <View style={styles.guessButton}>
-            <Text style={styles.guessButtonText}>+</Text>
-          </View>
-        </Pressable>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton onAction={onLower}>-</PrimaryButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton onAction={onGreater}>+</PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -25,7 +22,7 @@ const styles = StyleSheet.create({
     padding: 25,
     gap: 15,
     alignItems: 'center',
-    backgroundColor: '#971208',
+    backgroundColor: '#3b021f',
     height: 150,
     width: '80%',
     borderRadius: 10,
@@ -38,13 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 25,
   },
-  guessButton: {
-    backgroundColor: '#472747',
-    paddingHorizontal: 60,
-    borderRadius: 25,
-    padding: 7,
-  },
-  guessButtonText: {
-    color: '#B5A8B5',
+  buttonContainer: {
+    flex: 1,
   },
 });
