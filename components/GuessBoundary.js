@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   guessText: {
+    fontFamily: 'open-sans',
     color: Colors.accent500,
     fontSize: 22,
   },

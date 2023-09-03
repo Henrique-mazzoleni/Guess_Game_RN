@@ -20,6 +20,7 @@ export default function PrimaryButton({ children, onAction }) {
 
 const styles = StyleSheet.create({
   buttonContainer: {
+    alignSelf: 'stretch',
     overflow: 'hidden',
     borderRadius: 25,
   },

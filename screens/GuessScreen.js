@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   guessText: {
     fontSize: 30,
-    fontWeight: '700',
+    fontFamily: 'open-sans-bold',
     color: '#fff',
   },
 });

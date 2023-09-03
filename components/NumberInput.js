@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     color: Colors.accent500,
+    fontFamily: 'open-sans',
     fontSize: 22,
   },
   inputField: {

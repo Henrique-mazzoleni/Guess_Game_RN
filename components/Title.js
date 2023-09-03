@@ -8,8 +8,8 @@ export default function Title({ children }) {
 
 const styles = StyleSheet.create({
   title: {
+    fontFamily: 'open-sans-bold',
     fontSize: 25,
-    fontWeight: '700',
     padding: 12,
     paddingHorizontal: 50,
     color: Colors.accent500,

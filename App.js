@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
 
 import InputScreen from './screens/InputScreen';
 import GuessScreen from './screens/GuessScreen';
@@ -10,10 +12,28 @@ import EndScreen from './screens/EndScreen';
 
 import { Colors } from './constants/colors';
 
+SplashScreen.preventAutoHideAsync()
+  .then((result) => console.log(result))
+  .catch((error) => console.warn(error));
+
 export default function App() {
   const [chosenNumber, setChosenNumber] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [guessList, setGuessList] = useState([]);
+
+  const [fontsLoaded] = useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  });
+
+  useEffect(() => {
+    const hideSplash = async () => {
+      await SplashScreen.hideAsync();
+    };
+    if (fontsLoaded) hideSplash();
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return null;
 
   const numberHandler = (enteredNumber) => {
     setChosenNumber(enteredNumber);
