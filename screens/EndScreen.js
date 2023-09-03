@@ -15,8 +15,9 @@ export default function EndScreen({ rounds, number, onRestart }) {
         />
       </View>
       <Text style={styles.endText}>
-        Your phone needed {rounds} round{rounds > 1 ? 's' : ''} to guess the
-        number {number}
+        Your phone needed <Text style={styles.textHighlight}>{rounds}</Text>{' '}
+        round{rounds > 1 ? 's' : ''} to guess the number{' '}
+        <Text style={styles.textHighlight}>{number}</Text>
       </Text>
       <View style={styles.buttonContainer}>
         <PrimaryButton onAction={onRestart}>Start New Game</PrimaryButton>
@@ -46,6 +47,9 @@ const styles = StyleSheet.create({
   endText: {
     fontSize: 22,
     textAlign: 'center',
+  },
+  textHighlight: {
+    fontFamily: 'open-sans-bold',
   },
   endButton: {
     textAlign: 'center',

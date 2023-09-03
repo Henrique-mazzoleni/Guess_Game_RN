@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
 
+import { Colors } from '../constants/colors';
+
 import GuessBoundary from '../components/GuessBoundary';
 import Title from '../components/Title';
 
@@ -49,19 +51,24 @@ export default function GuessScreen({ onVerify, number, guessList }) {
         onGreater={lowerBoundHandler}
         onLower={upperBoundHandler}
       />
-      {/* <FlatList
-        data={guessList}
-        inverted={true}
-        renderItem={(guess, idx) => {
-          return (
-            <View>
-              <Text>#{idx}</Text>
-              <Text>Opponent's Guess: {guess}</Text>
-            </View>
-          );
-        }}
-        keyExtractor={(_, i) => i}
-      /> */}
+      <View style={styles.listContainer}>
+        <FlatList
+          data={guessList}
+          renderItem={(guess) => {
+            return (
+              <View style={styles.listItem}>
+                <Text style={styles.listText}>
+                  #{guessList.length - guess.index}
+                </Text>
+                <Text style={styles.listText}>
+                  Opponent's Guess: {guess.item}
+                </Text>
+              </View>
+            );
+          }}
+          keyExtractor={(guess) => guess}
+        />
+      </View>
     </>
   );
 }
@@ -79,5 +86,26 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'open-sans-bold',
     color: '#fff',
+  },
+  listContainer: {
+    flex: 1,
+    marginBottom: 15,
+  },
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignSelf: 'stretch',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: Colors.primary800,
+    backgroundColor: Colors.accent500,
+    marginBottom: 5,
+    width: 300,
+    elevation: 4,
+  },
+  listText: {
+    fontFamily: 'open-sans',
   },
 });

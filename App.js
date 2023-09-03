@@ -41,7 +41,7 @@ export default function App() {
 
   const checkAnswer = (guessedNumber) => {
     if (chosenNumber === guessedNumber) setIsCorrect(true);
-    else setGuessList((currState) => [...currState, guessedNumber]);
+    else setGuessList((currState) => [guessedNumber, ...currState]);
   };
 
   const restartHandler = () => {
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     opacity: 0.15,
   },
   contentContainer: {
+    flex: 1,
     gap: 30,
     alignItems: 'center',
     paddingTop: 120,
